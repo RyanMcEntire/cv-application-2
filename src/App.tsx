@@ -1,9 +1,11 @@
-import './index.css';
+import General from './components/general';
 
 function App() {
   return (
     <>
-      <div>TESTING HELLO WORLD</div>
+      <div className='bg-red text-gray-500 text-2xl'>TESTING HELLO WORLD</div>
+    <General />
+    
     </>
   );
 }

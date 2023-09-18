@@ -28,7 +28,7 @@ export default function General() {
   return (
     <>
       <div className="bg-slate-100 p-4">
-        <h1>General Info</h1>
+        <h2>General Info</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Name: </label>
           <input

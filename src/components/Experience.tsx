@@ -1,14 +1,21 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-interface FormData {
+interface ExperienceData {
+  id: string;
   name: string;
   title: string;
   dateStart: string;
   dateEnd: string;
 }
 
-export default function Experience() {
-  const [formData, setFormData] = useState<FormData>({
+interface ExperienceProps {
+  onUpdate: (data: ExperienceData) => void;
+  id: string;
+}
+
+export default function Experience({ onUpdate, id }: ExperienceProps) {
+  const [formData, setFormData] = useState<ExperienceData>({
+    id,
     name: '',
     title: '',
     dateStart: '',
@@ -22,9 +29,7 @@ export default function Experience() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(
-      `Name: ${formData.name}, Title: ${formData.title}, Date Started: ${formData.dateStart}, Date Ended: ${formData.dateEnd}`
-    );
+    onUpdate(formData);
   };
 
   return (
@@ -39,24 +44,24 @@ export default function Experience() {
             value={formData.name}
             onChange={handleChange}
           />
-          <label htmlFor="name">Position Title: </label>
+          <label htmlFor="title">Position Title: </label>
           <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
           />
-          <label htmlFor="name">Date Started: </label>
+          <label htmlFor="dateStart">Date Started: </label>
           <input
             type="date"
-            name="date"
+            name="dateStart"
             value={formData.dateStart}
             onChange={handleChange}
           />
-          <label htmlFor="name">Date Ended: </label>
+          <label htmlFor="dateEnd">Date Ended: </label>
           <input
             type="date"
-            name="date"
+            name="dateEnd"
             value={formData.dateEnd}
             onChange={handleChange}
           />

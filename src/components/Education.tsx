@@ -6,7 +6,14 @@ interface FormData {
   date: string;
 }
 
-export default function Education() {
+interface EduData {
+  id: string;
+  name: string;
+  title: string;
+  date: string;
+}
+
+export default function Education({ onUpdate, id }) {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     title: '',
@@ -20,9 +27,8 @@ export default function Education() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(
-      `Name: ${formData.name}, Title: ${formData.title}, Date Completed: ${formData.date}`
-    );
+    const educationInfo: EduData = { id, name, title, date };
+    onUpdate(educationInfo)
   };
 
   return (

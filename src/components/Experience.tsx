@@ -11,6 +11,7 @@ interface ExperienceData {
 interface ExperienceProps {
   onUpdate: (data: ExperienceData) => void;
   id: string;
+  data: ExperienceData;
 }
 
 export default function Experience({ onUpdate, id }: ExperienceProps) {
@@ -31,6 +32,8 @@ export default function Experience({ onUpdate, id }: ExperienceProps) {
     e.preventDefault();
     onUpdate(formData);
   };
+
+
 
   return (
     <>

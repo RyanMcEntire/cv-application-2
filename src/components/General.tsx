@@ -1,13 +1,17 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-interface FormData {
+interface GeneralData {
   name: string;
   email: string;
   phone: string;
 }
 
-export default function General() {
-  const [formData, setFormData] = useState<FormData>({
+interface GeneralProps {
+  onUpdate: (data: GeneralData) => void;
+}
+
+export default function General({ onUpdate }: GeneralProps) {
+  const [formData, setFormData] = useState<GeneralData>({
     name: '',
     email: '',
     phone: '',
@@ -20,9 +24,7 @@ export default function General() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(
-      `Name: ${formData.name}, Email: ${formData.email}, Phone: ${formData.phone}`
-    );
+    onUpdate(formData);
   };
 
   return (
@@ -51,7 +53,10 @@ export default function General() {
             value={formData.phone}
             onChange={handleChange}
           />
-          <button className="bg-white ml-3" type="submit">
+          <button
+            className="bg-white ml-3 border-solid border-2 p-1"
+            type="submit"
+          >
             Save
           </button>
         </form>

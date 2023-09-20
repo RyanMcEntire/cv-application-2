@@ -1,20 +1,22 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-interface FormData {
-  name: string;
-  title: string;
-  date: string;
-}
 
-interface EduData {
+interface EducationData {
   id: string;
   name: string;
   title: string;
   date: string;
 }
 
-export default function Education({ onUpdate, id }) {
-  const [formData, setFormData] = useState<FormData>({
+interface EducationProps {
+  onUpdate: (data: EducationData) => void;
+  id: string;
+  data: EducationData;
+}
+
+export default function Education({ onUpdate, id }: EducationProps) {
+  const [formData, setFormData] = useState<EducationData>({
+    id,
     name: '',
     title: '',
     date: '',
@@ -27,8 +29,7 @@ export default function Education({ onUpdate, id }) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const educationInfo: EduData = { id, name, title, date };
-    onUpdate(educationInfo)
+    onUpdate(formData);
   };
 
   return (

@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ListProps<T> {
   items: T[];
   onUpdate: (data: T, index: number) => void;

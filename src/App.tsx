@@ -4,6 +4,7 @@ import General from './components/General';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import { v4 as uuidv4 } from 'uuid';
+import DisplayCV from './components/DisplayCV';
 
 interface GeneralData {
   name: string;
@@ -118,6 +119,11 @@ const App = () => {
             onUpdate={onUpdate}
           />
         )}
+      />
+      <DisplayCV
+        general={general}
+        educations={educations}
+        experiences={experiences}
       />
     </>
   );

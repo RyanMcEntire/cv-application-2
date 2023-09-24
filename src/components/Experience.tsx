@@ -10,11 +10,12 @@ interface ExperienceData {
 
 interface ExperienceProps {
   onUpdate: (data: ExperienceData) => void;
+  onDelete: (id: string) => void;
   id: string;
   data: ExperienceData;
 }
 
-export default function Experience({ onUpdate, id }: ExperienceProps) {
+export default function Experience({ onUpdate, onDelete, id }: ExperienceProps) {
   const [formData, setFormData] = useState<ExperienceData>({
     id,
     name: '',
@@ -72,6 +73,7 @@ export default function Experience({ onUpdate, id }: ExperienceProps) {
             Save
           </button>
         </form>
+        <button onClick={() => onDelete(id)}>Delete</button>
       </div>
     </>
   );

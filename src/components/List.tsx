@@ -1,14 +1,28 @@
 interface ListProps<T> {
   items: T[];
   onUpdate: (data: T, index: number) => void;
-  renderer: (data: T, onUpdate: (data: T) => void) => JSX.Element;
+  onDelete: (id: string) => void;
+  renderer: (
+    data: T,
+    onUpdate: (data: T) => void,
+    onDelete: (id: string) => void
+  ) => JSX.Element;
 }
 
-export default function List<T>({ items, onUpdate, renderer }: ListProps<T>) {
-  return  (
+export default function List<T>({
+  items,
+  onUpdate,
+  onDelete,
+  renderer,
+}: ListProps<T>) {
+  return (
     <>
       {items.map((item, index) =>
-        renderer(item, (data) => onUpdate(data, index))
+        renderer(
+          item,
+          (data) => onUpdate(data, index),
+          (id) => onDelete(id)
+        )
       )}
     </>
   );

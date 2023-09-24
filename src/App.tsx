@@ -77,6 +77,14 @@ const App = () => {
     setEducations((prevEducations) => [...prevEducations, newEducation]);
   };
 
+  const handleDeleteExperience = (id: string) => {
+    setExperiences((prev) => prev.filter((experience) => experience.id !== id));
+  };
+
+  const handleDeleteEducation = (id: string) => {
+    setEducations((prev) => prev.filter((education) => education.id !== id));
+  };
+
   return (
     <>
       <General onUpdate={handleGeneralUpdate} />
@@ -91,12 +99,14 @@ const App = () => {
         onUpdate={(data: ExperienceData, index: number) =>
           handleUpdate(data, index, setExperiences)
         }
-        renderer={(data, onUpdate) => (
+        onDelete={handleDeleteExperience}
+        renderer={(data, onUpdate, onDelete) => (
           <Experience
             key={data.id}
             id={data.id}
             data={data}
             onUpdate={onUpdate}
+            onDelete={onDelete}
           />
         )}
       />
@@ -111,12 +121,14 @@ const App = () => {
         onUpdate={(data: EducationData, index: number) =>
           handleUpdate(data, index, setEducations)
         }
-        renderer={(data, onUpdate) => (
+        onDelete={handleDeleteEducation}
+        renderer={(data, onUpdate, onDelete) => (
           <Education
             key={data.id}
             id={data.id}
             data={data}
             onUpdate={onUpdate}
+            onDelete={onDelete}
           />
         )}
       />

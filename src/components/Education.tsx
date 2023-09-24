@@ -1,6 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-
 interface EducationData {
   id: string;
   name: string;
@@ -10,11 +9,12 @@ interface EducationData {
 
 interface EducationProps {
   onUpdate: (data: EducationData) => void;
+  onDelete: (id: string) => void;
   id: string;
   data: EducationData;
 }
 
-export default function Education({ onUpdate, id }: EducationProps) {
+export default function Education({ onUpdate, onDelete, id }: EducationProps) {
   const [formData, setFormData] = useState<EducationData>({
     id,
     name: '',
@@ -62,6 +62,7 @@ export default function Education({ onUpdate, id }: EducationProps) {
             Save
           </button>
         </form>
+        <button onClick={() => onDelete(id)}>Delete</button>
       </div>
     </>
   );
